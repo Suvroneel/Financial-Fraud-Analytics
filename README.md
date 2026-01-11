@@ -587,7 +587,7 @@ python src/fraud_detection.py --data data/Fraud.csv --output predictions.csv
 **Suvroneel Nathak**  
 *Data Analyst | Data Scientist*
 
-📧 [Your Email]  
+📧 suvroneelnathak213@gmail.com  
 🔗 [LinkedIn Profile]  
 💻 [GitHub Portfolio]
 
