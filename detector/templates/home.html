@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Fraud Detection{% endblock %}
+
+{% block content %}
+<div class="info-box">
+    <h3>📊 How It Works</h3>
+    <p>Enter transaction details below to check if a transaction is potentially fraudulent. Our AI model analyzes transaction patterns, balance changes, and transaction types to make predictions.</p>
+</div>
+
+<form method="POST" action="{% url 'predict' %}">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="amount">💰 Transaction Amount</label>
+        <input type="number" id="amount" name="amount" step="0.01" required 
+               placeholder="e.g., 50000.00">
+    </div>
+    
+    <div class="form-group">
+        <label for="type">🔄 Transaction Type</label>
+        <select id="type" name="type" required>
+            <option value="">Select Type</option>
+            <option value="CASH_OUT">CASH_OUT</option>
+            <option value="PAYMENT">PAYMENT</option>
+            <option value="CASH_IN">CASH_IN</option>
+            <option value="TRANSFER">TRANSFER</option>
+            <option value="DEBIT">DEBIT</option>
+        </select>
+    </div>
+    
+    <h3 style="margin-top: 30px; margin-bottom: 20px; color: #333;">Origin Account Balance</h3>
+    
+    <div class="form-group">
+        <label for="oldbalanceOrg">📥 Old Balance (Origin)</label>
+        <input type="number" id="oldbalanceOrg" name="oldbalanceOrg" step="0.01" required 
+               placeholder="e.g., 100000.00">
+    </div>
+    
+    <div class="form-group">
+        <label for="newbalanceOrig">📤 New Balance (Origin)</label>
+        <input type="number" id="newbalanceOrig" name="newbalanceOrig" step="0.01" required 
+               placeholder="e.g., 50000.00">
+    </div>
+    
+    <h3 style="margin-top: 30px; margin-bottom: 20px; color: #333;">Destination Account Balance</h3>
+    
+    <div class="form-group">
+        <label for="oldbalanceDest">📥 Old Balance (Destination)</label>
+        <input type="number" id="oldbalanceDest" name="oldbalanceDest" step="0.01" required 
+               placeholder="e.g., 0.00">
+    </div>
+    
+    <div class="form-group">
+        <label for="newbalanceDest">📤 New Balance (Destination)</label>
+        <input type="number" id="newbalanceDest" name="newbalanceDest" step="0.01" required 
+               placeholder="e.g., 50000.00">
+    </div>
+    
+    <button type="submit" class="btn">🔍 Analyze Transaction</button>
+</form>
+
+<div class="info-box" style="margin-top: 30px;">
+    <h3>💡 Tips</h3>
+    <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>CASH_OUT and TRANSFER transactions have higher fraud risk</li>
+        <li>Large transactions (>200,000) are flagged as high-value</li>
+        <li>Balance zeroing patterns (new balance = 0) indicate potential fraud</li>
+    </ul>
+</div>
+{% endblock %}

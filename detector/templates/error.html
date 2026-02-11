@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Error - Fraud Detection{% endblock %}
+
+{% block content %}
+<div class="alert alert-danger" style="text-align: center;">
+    <h2 style="margin-bottom: 15px;">❌ Error Occurred</h2>
+    <p style="font-size: 1.1em;">{{ error }}</p>
+</div>
+
+<div class="info-box">
+    <h3>💡 Common Issues</h3>
+    <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Model not trained yet - Run <code>python train_model.py</code> first</li>
+        <li>Invalid input values - Check that all fields are numbers</li>
+        <li>Missing required fields - Ensure all form fields are filled</li>
+    </ul>
+</div>
+
+<div style="margin-top: 30px; text-align: center;">
+    <a href="{% url 'home' %}" class="btn">← Back to Home</a>
+</div>
+{% endblock %}

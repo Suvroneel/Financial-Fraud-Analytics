@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Result - Fraud Detection{% endblock %}
+
+{% block content %}
+<h2 style="text-align: center; margin-bottom: 30px; color: #333;">Prediction Result</h2>
+
+{% if result.is_fraud %}
+<div class="alert alert-danger" style="text-align: center; font-size: 1.2em;">
+    <strong>⚠️ FRAUDULENT TRANSACTION DETECTED</strong>
+    <p style="margin-top: 10px;">This transaction shows patterns consistent with fraud.</p>
+</div>
+{% else %}
+<div class="alert alert-success" style="text-align: center; font-size: 1.2em;">
+    <strong>✅ LEGITIMATE TRANSACTION</strong>
+    <p style="margin-top: 10px;">This transaction appears to be genuine.</p>
+</div>
+{% endif %}
+
+<div class="info-box">
+    <h3>📊 Prediction Details</h3>
+    <table style="width: 100%; margin-top: 15px; border-collapse: collapse;">
+        <tr style="border-bottom: 1px solid #dee2e6;">
+            <td style="padding: 12px; font-weight: 600;">Fraud Probability:</td>
+            <td style="padding: 12px; text-align: right; color: {% if result.fraud_probability > 0.5 %}#dc3545{% else %}#28a745{% endif %}; font-weight: bold;">
+                {{ result.fraud_probability|floatformat:4 }} ({{ result.fraud_probability|floatformat:2 }}%)
+            </td>
+        </tr>
+        <tr style="border-bottom: 1px solid #dee2e6;">
+            <td style="padding: 12px; font-weight: 600;">Model Confidence:</td>
+            <td style="padding: 12px; text-align: right; font-weight: bold;">
+                {{ result.confidence|floatformat:4 }} ({{ result.confidence|floatformat:2 }}%)
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="info-box">
+    <h3>💳 Transaction Summary</h3>
+    <table style="width: 100%; margin-top: 15px; border-collapse: collapse;">
+        <tr style="border-bottom: 1px solid #dee2e6;">
+            <td style="padding: 12px; font-weight: 600;">Amount:</td>
+            <td style="padding: 12px; text-align: right;">${{ transaction.amount|floatformat:2 }}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #dee2e6;">
+            <td style="padding: 12px; font-weight: 600;">Type:</td>
+            <td style="padding: 12px; text-align: right;">{{ transaction.type }}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #dee2e6;">
+            <td style="padding: 12px; font-weight: 600;">Origin Balance Change:</td>
+            <td style="padding: 12px; text-align: right;">
+                ${{ transaction.oldbalanceOrg|floatformat:2 }} → ${{ transaction.newbalanceOrig|floatformat:2 }}
+            </td>
+        </tr>
+        <tr style="border-bottom: 1px solid #dee2e6;">
+            <td style="padding: 12px; font-weight: 600;">Destination Balance Change:</td>
+            <td style="padding: 12px; text-align: right;">
+                ${{ transaction.oldbalanceDest|floatformat:2 }} → ${{ transaction.newbalanceDest|floatformat:2 }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% if result.is_fraud %}
+<div class="alert alert-warning">
+    <h3 style="margin-bottom: 10px;">🚨 Recommended Actions</h3>
+    <ul style="margin-left: 20px;">
+        <li>Flag this transaction for manual review</li>
+        <li>Contact the account holder to verify</li>
+        <li>Consider temporarily freezing the account</li>
+        <li>Investigate recent transaction history</li>
+    </ul>
+</div>
+{% endif %}
+
+<div style="margin-top: 30px; text-align: center;">
+    <a href="{% url 'home' %}" class="btn">← Analyze Another Transaction</a>
+</div>
+{% endblock %}
