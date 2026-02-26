@@ -555,9 +555,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 *Data Scientist | ML Engineer*
 
 📧 Email: suvroneelnathak213@gmail.com  
-💼 LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)  
-🐙 GitHub: [Your GitHub](https://github.com/yourusername)  
-🌐 Portfolio: [Your Website](https://yourwebsite.com)
+💼 LinkedIn: [Suvroneel](https://www.linkedin.com/in/suvroneel-nathak/)  
+🐙 GitHub: [Suvroneel](https://github.com/Suvroneel)  
+🌐 Portfolio: [Figma](https://suvroneel-nathak.figma.site/)
 
 ---
 
