@@ -1,4 +1,4 @@
-# 🛡️ Fraud Detection System
+#  Fraud Detection System
 
 [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-4.2-green.svg)](https://www.djangoproject.com/)
